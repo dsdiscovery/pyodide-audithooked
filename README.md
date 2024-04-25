@@ -48,6 +48,11 @@ technical resources. These include:
 - [Build Pyodide from source](https://pyodide.org/en/stable/development/building-from-sources.html)
   - Build natively with `make`: primarily for Linux users who want to
     experiment or contribute back to the project.
+  - For mastery platform specifically, run `export PYODIDE_PACKAGES="numpy,matplotlib,pandas,scipy,scikit-learn" EXTRA_CFLAGS="-O3" EXTRA_LDFLAGS="-O3"` to
+    ensure the build process builds the packages we use and ensures the release files are optimized. Then set `export PYODIDE_JOBS=[number of threads you want the make to run on]`
+    as building the pyodide packages takes quite a while. Then just run `pip3 install -r requirements.txt` and run `make all`. Once this is finished, the `dist` folder is what we want
+    to link to the `pyodide` folder in mastery-platform. Note: whichever version of pyodide is compiled here needs to be the version of pyodide present in `package.json` in mastery-platform.
+    In case of any errors or confusions, please feel free to email garrettcredi@gmail.com and I can help out!
   - [Use a Docker image](https://pyodide.org/en/stable/development/building-from-sources.html#using-docker):
     recommended for Windows and macOS users and for Linux users who prefer a
     Debian-based Docker image with the dependencies already installed.
